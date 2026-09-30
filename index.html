@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name | Cybersecurity Portfolio</title>
+<meta name="description" content="Portfolio of Your Name, cybersecurity student at Sairam Engineering College.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef2f6;
+    --surface: #ffffff;
+    --ink: #14213d;
+    --muted: #4d5b75;
+    --line: #cfd8e3;
+    --accent: #d1342f;
+    --accent-ink: #ffffff;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1726; --surface: #18233a; --ink: #e8edf5;
+      --muted: #a3b0c6; --line: #2a3853; --accent: #ff6a5f; --accent-ink: #0f1726;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1726; --surface: #18233a; --ink: #e8edf5;
+    --muted: #a3b0c6; --line: #2a3853; --accent: #ff6a5f; --accent-ink: #0f1726;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--body);
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { width: min(100% - 2.5rem, 62rem); margin-inline: auto; }
+
+  /* Header */
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
+  .brand { font: 800 1.15rem var(--display); text-decoration: none; }
+  nav { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+  nav a { text-decoration: none; font-weight: 500; color: var(--muted); }
+  nav a:hover { color: var(--ink); }
+  #theme {
+    background: none; border: 1px solid var(--line); color: var(--ink);
+    border-radius: 999px; padding: .3rem .8rem; font: 500 .9rem var(--body); cursor: pointer;
+  }
+
+  /* Hero */
+  .hero { padding: clamp(3.5rem, 10vw, 7rem) 0 clamp(3rem, 8vw, 5rem); }
+  .hero h1 {
+    font: 800 clamp(2.4rem, 7vw, 5rem)/1.02 var(--display);
+    letter-spacing: -.03em; margin: 0 0 1.5rem; max-width: 16ch;
+  }
+  .redact {
+    font: inherit; letter-spacing: inherit; border: 0; padding: 0 .12em; margin: 0 -.12em;
+    cursor: pointer; background: var(--ink); color: var(--ink);
+    border-radius: 3px; transition: background .35s, color .35s;
+  }
+  .redact[aria-pressed="true"] { background: transparent; color: var(--accent); }
+  .hero p.lead { max-width: 40rem; color: var(--muted); font-size: 1.2rem; margin: 0 0 .5rem; }
+  .hint { font-size: .9rem; color: var(--muted); margin: 0 0 2rem; }
+  .actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: .75rem 1.4rem; border-radius: 6px;
+    font-weight: 600; text-decoration: none; border: 2px solid var(--ink);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn { transition: transform .15s; }
+
+  /* Sections */
+  section { padding: clamp(3rem, 7vw, 5rem) 0; border-top: 1px solid var(--line); }
+  h2 { font: 800 clamp(1.7rem, 4vw, 2.4rem)/1.1 var(--display); letter-spacing: -.02em; margin: 0 0 2rem; }
+  h3 { font: 800 1.2rem var(--display); margin: 0 0 .4rem; }
+  .about { display: grid; gap: 2rem; grid-template-columns: 1.6fr 1fr; }
+  .about p { margin: 0 0 1rem; max-width: 60ch; }
+  dl.facts { margin: 0; padding: 1.25rem 1.5rem; background: var(--surface); border-left: 4px solid var(--accent); }
+  dl.facts dt { font-weight: 600; }
+  dl.facts dd { margin: 0 0 .9rem; color: var(--muted); }
+  dl.facts dd:last-child { margin-bottom: 0; }
+
+  /* Skills */
+  .skills { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .skills div { padding-top: 1rem; border-top: 3px solid var(--ink); }
+  .skills ul { list-style: none; margin: .5rem 0 0; padding: 0; color: var(--muted); }
+  .skills li { padding: .15rem 0; }
+
+  /* Projects */
+  .projects { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+  .project { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; }
+  .project p { margin: 0 0 1rem; color: var(--muted); flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+  .tags span { font-size: .82rem; font-weight: 500; padding: .15rem .6rem; border: 1px solid var(--line); border-radius: 999px; }
+  .project a { font-weight: 600; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+
+  /* Contact */
+  .contact p { max-width: 36rem; color: var(--muted); margin: 0 0 1.5rem; }
+  .links { display: flex; gap: .8rem; flex-wrap: wrap; }
+  footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
+
+  @media (max-width: 720px) { .about { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .redact, .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Your Name</a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero wrap">
+    <h1>I learn how systems break so I can keep <button class="redact" id="redact" type="button" aria-pressed="false">them safe</button>.</h1>
+    <p class="lead">I'm Your Name, a second-year cybersecurity student at Sairam Engineering College, West Tambaram. I build labs, solve CTF challenges and write up what I learn.</p>
+    <p class="hint">Tip: click the blacked-out words above.</p>
+    <div class="actions">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <h2>About me</h2>
+        <p>I'm studying cybersecurity and spend most of my free time in home labs and online challenge platforms. I like understanding an attack step by step, then working out how to detect or prevent it.</p>
+        <p>Right now I'm focused on web application security and network fundamentals. I'm looking for internships and teams where I can learn from working professionals.</p>
+      </div>
+      <dl class="facts">
+        <dt>Studying</dt><dd>B.E. Cybersecurity, 2nd year</dd>
+        <dt>College</dt><dd>Sairam Engineering College, West Tambaram</dd>
+        <dt>Currently learning</dt><dd>Web app testing, Linux, networking</dd>
+        <dt>Open to</dt><dd>Internships and collaborations</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>
+          <h3>Security</h3>
+          <ul><li>Web vulnerabilities (OWASP Top 10)</li><li>Network scanning and analysis</li><li>Basic digital forensics</li></ul>
+        </div>
+        <div>
+          <h3>Tools</h3>
+          <ul><li>Kali Linux</li><li>Wireshark and Nmap</li><li>Burp Suite</li></ul>
+        </div>
+        <div>
+          <h3>Programming</h3>
+          <ul><li>Python</li><li>Bash</li><li>HTML, CSS and JavaScript</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <h3>Home security lab</h3>
+          <p>A virtual lab with a vulnerable web server and an attacker machine, used to practise scanning, exploitation and reporting.</p>
+          <div class="tags"><span>VirtualBox</span><span>Kali</span><span>Nmap</span></div>
+          <a href="#">View project</a>
+        </article>
+        <article class="project">
+          <h3>Port scanner in Python</h3>
+          <p>A small command-line tool that checks open ports on a host and reports the services it finds.</p>
+          <div class="tags"><span>Python</span><span>Sockets</span></div>
+          <a href="#">View on GitHub</a>
+        </article>
+        <article class="project">
+          <h3>CTF write-ups</h3>
+          <p>Step-by-step solutions to beginner and intermediate challenges, explaining the reasoning behind each one.</p>
+          <div class="tags"><span>Web</span><span>Crypto</span><span>Forensics</span></div>
+          <a href="#">Read write-ups</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p>Have an internship, a project idea or a question? Send me a message and I'll reply as soon as I can.</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:you@example.com">Email me</a>
+        <a class="btn" href="https://github.com/yourusername">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/yourusername">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; <span id="year"></span> Your Name. All rights reserved.</div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  var redact = document.getElementById("redact");
+  redact.addEventListener("click", function () {
+    var on = redact.getAttribute("aria-pressed") === "true";
+    redact.setAttribute("aria-pressed", String(!on));
+  });
+
+  var root = document.documentElement;
+  document.getElementById("theme").addEventListener("click", function () {
+    var dark = root.dataset.theme
+      ? root.dataset.theme === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+  });
+</script>
+</body>
+</html>
